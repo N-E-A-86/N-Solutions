@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start">
           <Logo />
-          <p className="text-gray-500 text-sm mt-4 text-center md:text-left">
+          <p className="text-gray-400 text-sm mt-4 text-center md:text-left">
             Diseño web, automatización e Inteligencia Artificial para empresas que miran al futuro.
           </p>
         </div>

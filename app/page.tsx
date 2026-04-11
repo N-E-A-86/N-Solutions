@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
+import { AIAgents } from '@/components/AIAgents';
 import { Automation } from '@/components/Automation';
 import { Logistics } from '@/components/Logistics';
 import { Contact } from '@/components/Contact';
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
+      <AIAgents />
       <Automation />
       <Logistics />
       <Contact />

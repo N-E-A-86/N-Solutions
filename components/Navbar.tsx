@@ -29,9 +29,10 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#servicios" className="text-sm text-gray-300 hover:text-[#00E5FF] transition-colors">Servicios</a>
-          <a href="#automatizacion" className="text-sm text-gray-300 hover:text-[#00E5FF] transition-colors">Automatización</a>
-          <a href="#casos" className="text-sm text-gray-300 hover:text-[#00E5FF] transition-colors">Casos de Uso</a>
+          <a href="#servicios" className="text-sm text-gray-200 hover:text-[#00E5FF] transition-colors">Servicios</a>
+          <a href="#ai-agents" className="text-sm text-gray-200 hover:text-[#00E5FF] transition-colors">Agentes IA</a>
+          <a href="#automatizacion" className="text-sm text-gray-200 hover:text-[#00E5FF] transition-colors">Automatización</a>
+          <a href="#casos" className="text-sm text-gray-200 hover:text-[#00E5FF] transition-colors">Casos de Uso</a>
           <a
             href="#contacto"
             className="text-sm font-medium px-5 py-2 rounded-full neon-border-cyan text-[#00E5FF] hover:bg-[#00E5FF]/10 transition-all duration-300 hover:scale-105"
@@ -52,9 +53,10 @@ export function Navbar() {
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-[#0D0D0D]/95 backdrop-blur-xl border-b border-[rgba(255,255,255,0.05)] p-6 flex flex-col space-y-4">
-          <a href="#servicios" className="text-gray-300 hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Servicios</a>
-          <a href="#automatizacion" className="text-gray-300 hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Automatización</a>
-          <a href="#casos" className="text-gray-300 hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Casos de Uso</a>
+          <a href="#servicios" className="text-gray-100 font-medium hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Servicios</a>
+          <a href="#ai-agents" className="text-gray-100 font-medium hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Agentes IA</a>
+          <a href="#automatizacion" className="text-gray-100 font-medium hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Automatización</a>
+          <a href="#casos" className="text-gray-100 font-medium hover:text-[#00E5FF]" onClick={() => setIsMobileMenuOpen(false)}>Casos de Uso</a>
           <a
             href="#contacto"
             className="text-center font-medium px-5 py-3 rounded-lg neon-border-cyan text-[#00E5FF] hover:bg-[#00E5FF]/10 transition-all"

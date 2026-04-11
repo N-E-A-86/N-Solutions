@@ -1,28 +1,59 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Send, Loader2, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+
+const contactSchema = z.object({
+  name: z.string().min(3, 'El nombre debe tener al menos 3 caracteres'),
+  email: z.string().email('Introduce un correo electrónico válido'),
+  company: z.string().optional(),
+  message: z.string().min(10, 'Cuéntanos un poco más sobre tu desafío (mín. 10 caracteres)'),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [processStep, setProcessStep] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Terminal-style simulation steps
+    const steps = [
+      'Iniciando conexión segura...',
+      'Analizando requerimientos...',
+      'Asignando arquitecto de guardia...',
+      'Enviando payload a N-Solutions Ops...',
+    ];
+
+    for (const step of steps) {
+      setProcessStep(step);
+      await new Promise(resolve => setTimeout(resolve, 600));
+    }
+    
+    // Final simulation
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    
     setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Reset after 3 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-        (e.target as HTMLFormElement).reset();
-      }, 3000);
-    }, 2000);
+      setIsSuccess(false);
+      reset();
+    }, 4000);
   };
 
   return (
@@ -49,52 +80,125 @@ export function Contact() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="input-group">
-                  <input type="text" id="name" placeholder=" " required />
-                  <label htmlFor="name">Nombre Completo</label>
+                <div className="space-y-1">
+                  <div className="input-group">
+                    <input 
+                      {...register('name')} 
+                      type="text" 
+                      id="name" 
+                      placeholder=" " 
+                      className={errors.name ? 'border-red-500/50' : ''}
+                    />
+                    <label htmlFor="name">Nombre Completo</label>
+                  </div>
+                  {errors.name && (
+                    <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-red-400 text-xs flex items-center gap-1">
+                      <AlertCircle size={12} /> {errors.name.message}
+                    </motion.p>
+                  )}
                 </div>
-                <div className="input-group">
-                  <input type="email" id="email" placeholder=" " required />
-                  <label htmlFor="email">Correo Electrónico</label>
+
+                <div className="space-y-1">
+                  <div className="input-group">
+                    <input 
+                      {...register('email')} 
+                      type="email" 
+                      id="email" 
+                      placeholder=" " 
+                      className={errors.email ? 'border-red-500/50' : ''}
+                    />
+                    <label htmlFor="email">Correo Electrónico</label>
+                  </div>
+                  {errors.email && (
+                    <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-red-400 text-xs flex items-center gap-1">
+                      <AlertCircle size={12} /> {errors.email.message}
+                    </motion.p>
+                  )}
                 </div>
               </div>
               
-              <div className="input-group">
-                <input type="text" id="company" placeholder=" " />
-                <label htmlFor="company">Empresa / Proyecto</label>
+              <div className="space-y-1">
+                <div className="input-group">
+                  <input {...register('company')} type="text" id="company" placeholder=" " />
+                  <label htmlFor="company">Empresa / Proyecto (Opcional)</label>
+                </div>
               </div>
 
-              <div className="input-group">
-                <textarea id="message" rows={4} placeholder=" " required></textarea>
-                <label htmlFor="message">¿Qué desafío tecnológico quieres resolver?</label>
+              <div className="space-y-1">
+                <div className="input-group">
+                  <textarea 
+                    {...register('message')} 
+                    id="message" 
+                    rows={4} 
+                    placeholder=" " 
+                    className={errors.message ? 'border-red-500/50' : ''}
+                  ></textarea>
+                  <label htmlFor="message">¿Qué desafío tecnológico quieres resolver?</label>
+                </div>
+                {errors.message && (
+                  <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-red-400 text-xs flex items-center gap-1">
+                    <AlertCircle size={12} /> {errors.message.message}
+                  </motion.p>
+                )}
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting || isSuccess}
-                className={`w-full py-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
+                className={`w-full py-4 rounded-lg font-bold flex flex-col items-center justify-center gap-1 transition-all duration-300 relative overflow-hidden ${
                   isSuccess 
                     ? 'bg-[#25D366] text-black shadow-[0_0_20px_rgba(37,211,102,0.4)]' 
-                    : 'bg-[#00E5FF] text-black hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:scale-[1.02]'
+                    : 'bg-[#00E5FF] text-black hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:scale-[1.01]'
                 }`}
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="animate-spin" size={20} />
-                    <span>Procesando...</span>
-                  </>
-                ) : isSuccess ? (
-                  <>
-                    <CheckCircle2 size={20} />
-                    <span>Mensaje Enviado</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    <span>Solicitar Consulta Gratuita</span>
-                  </>
+                <AnimatePresence mode="wait">
+                  {isSubmitting ? (
+                    <motion.div 
+                      key="submitting"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex flex-col items-center"
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <Loader2 className="animate-spin" size={20} />
+                        <span className="font-mono text-xs uppercase tracking-widest">Processing</span>
+                      </div>
+                      <span className="text-[10px] font-mono opacity-70 animate-pulse">{processStep}</span>
+                    </motion.div>
+                  ) : isSuccess ? (
+                    <motion.div 
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="flex items-center gap-2"
+                    >
+                      <CheckCircle2 size={20} />
+                      <span>Mensaje Enviado con Éxito</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      key="idle"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Send size={20} />
+                      <span>Solicitar Consulta Gratuita</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                {/* Progress bar effect during submission */}
+                {isSubmitting && (
+                  <motion.div 
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 2.4, ease: "linear" }}
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-black/20 origin-left"
+                  />
                 )}
               </button>
             </form>
