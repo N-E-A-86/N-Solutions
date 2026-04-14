@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { MessageSquare, Database, Receipt, ArrowRight, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 
-export function Automation() {
+export default function Automation() {
   return (
     <section id="automatizacion" className="py-24 relative overflow-hidden">
       {/* Background Glow */}

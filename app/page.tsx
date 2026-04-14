@@ -1,9 +1,10 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
-import { AIAgents } from '@/components/AIAgents';
-import { Automation } from '@/components/Automation';
-import { Logistics } from '@/components/Logistics';
+import AIAgents from '@/components/AIAgents';
+import Automation from '@/components/Automation';
+import Logistics from '@/components/Logistics';
+import Process from '@/components/Process';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { ParticleCursor } from '@/components/ParticleCursor';
@@ -19,6 +20,7 @@ export default function Home() {
       <AIAgents />
       <Automation />
       <Logistics />
+      <Process />
       <Contact />
       <Footer />
       <WhatsAppButton />

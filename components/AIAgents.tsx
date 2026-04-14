@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { Bot, Cpu, Zap, Globe, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 
-export function AIAgents() {
+export default function AIAgents() {
   return (
     <section id="ai-agents" className="py-24 relative overflow-hidden bg-black/30">
       {/* Decorative Blur */}
