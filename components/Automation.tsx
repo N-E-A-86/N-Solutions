@@ -28,16 +28,16 @@ export default function Automation() {
                 <span className="neon-text-yellow">escala tu negocio</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                Conectamos tus herramientas favoritas para que el flujo de datos sea invisible y eficiente. 
+                Conectamos tus herramientas favoritas para que el flujo de datos sea invisible y eficiente.
                 Dejamos de lado las tareas repetitivas para que tu equipo se enfoque en la innovación.
               </p>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {[
                   { title: 'Data Flow', desc: 'Sincronización total' },
                   { title: 'Smart Bots', desc: 'Atención inteligente' },
                   { title: 'Auto-Billing', desc: 'Facturación sin errores' },
-                  { title: 'Legacy Sync', desc: 'Integración retroactiva' }
+                  { title: 'smart sync', desc: 'Integración retroactiva' }
                 ].map((item, i) => (
                   <div key={i} className="flex flex-col p-4 glass-panel rounded-xl border-l-2 border-l-[#FFD700]/50">
                     <span className="text-white font-bold text-sm">{item.title}</span>
@@ -56,17 +56,17 @@ export default function Automation() {
               transition={{ duration: 0.8 }}
               className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-3xl glass-panel group"
             >
-              <Image 
+              <Image
                 src="/images/automation-viz.png"
                 alt="Visualización de Automatización"
                 fill
                 className="object-cover opacity-60 mix-blend-screen group-hover:scale-110 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent"></div>
-              
+
               {/* Animated UI Nodes overlay */}
               <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="self-start glass-panel p-4 rounded-xl border-[#FFD700]/30 max-w-[200px]"
@@ -78,7 +78,7 @@ export default function Automation() {
                     <span className="text-[10px] uppercase font-bold text-white tracking-widest">Inbound</span>
                   </div>
                   <div className="h-1 bg-white/10 w-full rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-[#25D366]"
                       animate={{ width: ["0%", "100%"] }}
                       transition={{ duration: 2, repeat: Infinity }}
@@ -86,7 +86,7 @@ export default function Automation() {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                   className="self-end glass-panel p-4 rounded-xl border-[#00E5FF]/30 max-w-[200px]"

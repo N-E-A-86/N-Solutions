@@ -70,7 +70,7 @@ export default function Logistics() {
                 Nuestras implementaciones permiten el control total de la fuerza laboral y los activos, eliminando cuellos de botella mediante algoritmos de asignación inteligente.
               </p>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                desarrollamos un sistema de gestion que permite el rastreo de los vehiculos en tiempo real, la asignacion de rutas y la optimizacion de los tiempos de entrega.
+                Desarrollamos sistemas de gestión avanzada que permiten el monitoreo de activos en tiempo real, la optimización de rutas logísticas y la reducción drástica de tiempos operativos.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

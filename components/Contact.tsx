@@ -31,29 +31,45 @@ export function Contact() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    
-    // Terminal-style simulation steps
-    const steps = [
-      'Iniciando conexión segura...',
-      'Analizando requerimientos...',
-      'Asignando arquitecto de guardia...',
-      'Enviando payload a N-Solutions Ops...',
-    ];
+    try {
+      // API call to our new route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    for (const step of steps) {
-      setProcessStep(step);
-      await new Promise(resolve => setTimeout(resolve, 600));
-    }
-    
-    // Final simulation
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    setTimeout(() => {
-      setIsSuccess(false);
+      if (!response.ok) {
+        throw new Error('Error al enviar el mensaje');
+      }
+
+      // Simulation steps for UX (optional, but keeping the "terminal" feel)
+      const steps = [
+        'Iniciando conexión segura...',
+        'Analizando requerimientos...',
+        'Asignando arquitecto de guardia...',
+        'Enviando payload a N-Solutions Ops...',
+      ];
+
+      for (const step of steps) {
+        setProcessStep(step);
+        await new Promise(resolve => setTimeout(resolve, 600));
+      }
+      
+      setIsSuccess(true);
       reset();
-    }, 4000);
+      
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 4000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
