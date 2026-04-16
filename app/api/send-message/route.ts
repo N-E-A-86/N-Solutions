@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     const { data, error } = await resend.emails.send({
       from: 'N-Solutions Contact <onboarding@resend.dev>',
-      to: ['nsoulutiontech@gmail.com'], 
+      to: ['nsoulutiontech@gmail.com'],
       subject: `Nueva Consulta: ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #0d0d0d; color: #ffffff; border-radius: 12px; border: 1px solid #1a1a1a;">

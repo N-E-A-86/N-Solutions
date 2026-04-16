@@ -1,7 +1,24 @@
+
+# Dependencias
 node_modules/
+
+# Next.js
 .next/
-coverage/
-.DS_Store
+out/
+build/
+
+# Firebase (MUY IMPORTANTE)
+.firebase/
+firestore.indexes.json
+firebase-debug.log*
+.runtimeconfig.json
+
+# Logs y Sistema
 *.log
+.DS_Store
+coverage/
+
+# Variables de entorno (Seguridad)
 .env*
 !.env.example
+.env.local

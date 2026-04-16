@@ -31,14 +31,19 @@ export function Contact() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
     try {
-      // API call to our new route
-      const response = await fetch('/api/send-message', {
+      // Using Formspree for form submission (works with static hosting)
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          _subject: `Nueva Consulta: ${data.name}`,
+        }),
       });
 
       if (!response.ok) {
