@@ -8,6 +8,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, company, message } = body;
 
+
     // Validación básica en el servidor
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -16,9 +17,11 @@ export async function POST(req: Request) {
       );
     }
 
+    console.log('Validating body:', body);
+
     const { data, error } = await resend.emails.send({
       from: 'N-Solutions Contact <onboarding@resend.dev>',
-      to: ['nsoulutiontech@gmail.com'], // El usuario debe cambiar esto por su correo real
+      to: ['nsoulutiontech@gmail.com'], 
       subject: `Nueva Consulta: ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #0d0d0d; color: #ffffff; border-radius: 12px; border: 1px solid #1a1a1a;">
@@ -43,6 +46,9 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ data });
+
+
+
   } catch (err) {
     console.error('Error en API Contact:', err);
     return NextResponse.json(

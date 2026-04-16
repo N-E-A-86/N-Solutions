@@ -33,7 +33,7 @@ export function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       // API call to our new route
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/send-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
