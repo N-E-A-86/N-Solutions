@@ -19,6 +19,6 @@ firebase-debug.log*
 coverage/
 
 # Variables de entorno (Seguridad)
-.env*
+.env
 !.env.example
 .env.local

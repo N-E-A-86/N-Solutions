@@ -33,21 +33,18 @@ export function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
-      // Using Formspree for form submission (works with static hosting)
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Send form data to Firebase Cloud Function via Hosting rewrite
+      const response = await fetch('/api/send-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          ...data,
-          _subject: `Nueva Consulta: ${data.name}`,
-        }),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        throw new Error('Error al enviar el mensaje');
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || 'Error al enviar el mensaje');
       }
 
       // Simulation steps for UX (optional, but keeping the "terminal" feel)
