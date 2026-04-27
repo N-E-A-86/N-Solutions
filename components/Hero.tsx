@@ -66,7 +66,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
         >
-          Desarrollo Full Stack, Agentes de IA y Automatización de procesos. 
+          Desarrollo de software a medida, Agentes de IA y Automatización de procesos. 
           Transformamos operaciones complejas en ecosistemas digitales eficientes y escalables.
         </motion.p>
 

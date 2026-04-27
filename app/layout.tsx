@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://n-solutions-agency-86.web.app'),
+  metadataBase: new URL('https://n-solutions.com.ar'),
   title: 'N-Solutions | Innovación Digital: IA, Automatización y Desarrollo Web',
   description: 'Transformamos tu negocio con agentes de IA, automatización de procesos y desarrollo web de alto rendimiento. N-Solutions: Tu socio tecnológico para el futuro.',
   keywords: ['agencia digital', 'inteligencia artificial', 'automatización de procesos', 'desarrollo web', 'agentes IA', 'logística inteligente', 'N-Solutions'],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'N-Solutions | Soluciones Digitales Inteligentes',
     description: 'Agentes de IA, automatización y desarrollo web de última generación.',
-    url: 'https://n-solutions-agency-86.web.app',
+    url: 'https://n-solutions.com.ar',
     siteName: 'N-Solutions',
     images: [
       {
