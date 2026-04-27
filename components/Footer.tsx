@@ -1,11 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Logo } from './Logo';
 import { LegalModal } from './LegalModal';
 
 export function Footer() {
   const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
+  const [showToast, setShowToast] = useState(false);
+
+  const copyEmailToClipboard = () => {
+    navigator.clipboard.writeText('nsoulutiontech@gmail.com');
+    setShowToast(true);
+    
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 4000);
+  };
 
   const privacyContent = (
     <div className="space-y-6">
@@ -97,10 +108,22 @@ export function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">Conecta</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li>
-                <a href="mailto:nsoulutiontech@gmail.com" className="hover:text-[#00E5FF] transition-colors flex items-center gap-2">
+              <li className="relative">
+                <button 
+                  onClick={copyEmailToClipboard}
+                  className="hover:text-[#00E5FF] transition-colors flex items-center gap-2 cursor-pointer"
+                >
                   Email
-                </a>
+                </button>
+                {/* Toast Notification */}
+                {showToast && (
+                  <div className="absolute -top-10 left-0 animate-in fade-in duration-300 z-50">
+                    <div className="glass-panel neon-border-cyan px-3 py-2 text-xs whitespace-nowrap flex items-center gap-2">
+                      <span className="text-[#00E5FF]">✓</span>
+                      <span className="text-[#00E5FF]">Email copiado</span>
+                    </div>
+                  </div>
+                )}
               </li>
               <li>
                 <a 
